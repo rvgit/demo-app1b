@@ -4,6 +4,9 @@ FROM registry.access.redhat.com/ubi8/nodejs-16
 # Définir le répertoire de travail
 WORKDIR /app
 
+# Donner les permissions à tous les utilisateurs
+RUN chmod -R 777 /app
+
 # Copier le fichier de dépendances
 COPY package*.json ./
 
@@ -12,9 +15,6 @@ RUN npm install
 
 # Copier le fichier d'application dans le conteneur
 COPY app.js /app
-
-# Donner les permissions à tous les utilisateurs
-RUN chmod -R 777 /app
 
 # Exporter le port 3000
 EXPOSE 3000
